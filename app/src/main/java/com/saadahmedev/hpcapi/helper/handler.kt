@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.saadahmedev.hpcapi.ui.helper
+package com.saadahmedev.hpcapi.helper
 
 import android.os.Handler
 import android.os.Looper
