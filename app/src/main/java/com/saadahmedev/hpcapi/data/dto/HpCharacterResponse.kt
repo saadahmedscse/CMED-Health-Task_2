@@ -1,6 +1,8 @@
 package com.saadahmedev.hpcapi.data.dto
 
 import com.google.gson.annotations.SerializedName
+import com.saadahmedev.hpcapi.domain.model.HpCharacter
+import com.saadahmedev.hpcapi.domain.model.HpCharacterDetails
 
 data class HpCharacterResponse(
     @SerializedName("id") var id: String? = null,
@@ -23,4 +25,33 @@ data class HpCharacterResponse(
     @SerializedName("alternate_actors") var alternateActors: ArrayList<String> = arrayListOf(),
     @SerializedName("alive") var alive: Boolean? = null,
     @SerializedName("image") var image: String? = null
-)
+) {
+    fun toHpCharacter(): HpCharacter {
+        return HpCharacter(
+            id = this.id,
+            picture = this.image,
+            name = this.name,
+            actorName = this.actor,
+            houseName = this.house
+        )
+    }
+
+    fun toHpCharacterDetails(): HpCharacterDetails {
+        return HpCharacterDetails(
+            picture = this.image,
+            name = this.name,
+            actorName = this.actor,
+            houseName = this.house,
+            alternateNames = this.alternateNames,
+            gender = this.gender,
+            dateOfBirth = this.dateOfBirth,
+            wizard = this.wizard,
+            eyeColour = this.eyeColour,
+            hairColour = this.hairColour,
+            hogwartsStudent = this.hogwartsStudent,
+            hogwartsStaff = this.hogwartsStaff,
+            wand = this.wand,
+            alive = this.alive
+        )
+    }
+}
