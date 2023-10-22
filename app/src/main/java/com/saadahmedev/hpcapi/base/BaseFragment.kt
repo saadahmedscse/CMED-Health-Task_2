@@ -32,6 +32,7 @@ import com.saadahmedev.hpcapi.helper.snackBar
 import com.saadahmedev.hpcapi.helper.toast
 import com.saadahmedev.hpcapi.util.SessionManager
 import com.saadahmedev.hpcapi.viewmodel.ToolbarViewModel
+import com.saadahmedsoft.tinydb.TinyDB
 
 abstract class BaseFragment<BINDING: ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater) -> BINDING
@@ -40,12 +41,16 @@ abstract class BaseFragment<BINDING: ViewBinding>(
     private lateinit var _binding: BINDING
     private val toolbarViewModel by activityViewModels<ToolbarViewModel>()
     private lateinit var _session: SessionManager
+    private lateinit var _tinyDb: TinyDB
 
      val binding: BINDING
         get() = _binding
 
     val session: SessionManager
         get() = _session
+
+    val tinyDB: TinyDB
+        get() = _tinyDb
 
     abstract val title: String
     abstract val isBackButtonVisible: Boolean
@@ -57,6 +62,7 @@ abstract class BaseFragment<BINDING: ViewBinding>(
         super.onCreate(savedInstanceState)
         _binding = bindingInflater.invoke(layoutInflater)
         _session = SessionManager.getInstance(requireContext())
+        _tinyDb = TinyDB.getInstance(requireContext())
         onFragmentCreate(savedInstanceState)
         observeData()
     }
