@@ -1,12 +1,16 @@
 package com.saadahmedev.hpcapi.ui.dashboard
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.saadahmedev.hpcapi.R
+import com.saadahmedev.hpcapi.base.BaseActivity
+import com.saadahmedev.hpcapi.databinding.ActivityDashboardBinding
+import com.saadahmedev.hpcapi.databinding.AppToolbarBinding
 
-class DashboardActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
-    }
+class DashboardActivity : BaseActivity<ActivityDashboardBinding>(ActivityDashboardBinding::inflate) {
+
+    override val toolbarBinding: AppToolbarBinding
+        get() = binding.appToolbar
+
+    override fun onActivityCreate(savedInstanceState: Bundle?) {}
+
+    override fun observeData() {}
 }
