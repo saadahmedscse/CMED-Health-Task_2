@@ -11,6 +11,7 @@ import com.saadahmedev.hpcapi.ui.dashboard.tabs.home.adapter.CharacterAdapter
 import com.saadahmedev.hpcapi.ui.dashboard.tabs.home.adapter.OnAdapterItemClickListener
 import com.saadahmedev.hpcapi.ui.dashboard.tabs.home.viewmodel.HpCharacterListViewModel
 import com.saadahmedev.hpcapi.util.Constants.AppInfo.APP_NAME
+import com.saadahmedev.hpcapi.util.ProgressDialog
 import com.saadahmedev.hpcapi.util.ResponseState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,8 +27,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val adapter by lazy {
         CharacterAdapter(this)
     }
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onFragmentCreate(savedInstanceState: Bundle?) {
+        progressDialog = ProgressDialog.getInstance(requireContext())
         binding.recyclerView.setLinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
@@ -38,16 +41,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         observe(viewModel.hpCharacterList) {
             when (it) {
                 is ResponseState.Loading -> {
-                    //
+                    progressDialog.show("Hp Characters are loading, please wait.")
                 }
 
                 is ResponseState.Success -> {
+                    progressDialog.dismiss()
                     it.data?.let { characters ->
                         adapter.addItems(characters)
                     }
                 }
 
                 is ResponseState.Error -> {
+                    progressDialog.dismiss()
                     it.message.longSnackBar()
                 }
             }
