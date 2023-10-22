@@ -57,6 +57,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
 
+    //Popup Dialog
+    implementation("com.saadahmedev.popup-dialog:popup-dialog:1.0.5")
+
     //Short Intent
     implementation("com.saadahmedev.shortintent:shortintent:3.0.0")
 
