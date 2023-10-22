@@ -1,5 +1,6 @@
 package com.saadahmedev.hpcapi.domain.model
 
+import com.saadahmedev.hpcapi.caching.entity.HpCharacterDetailsEntity
 import com.saadahmedev.hpcapi.data.dto.Wand
 
 data class HpCharacterDetails(
@@ -17,4 +18,10 @@ data class HpCharacterDetails(
     val hogwartsStaff: Boolean? = null,
     val wand: Wand? = Wand(),
     val alive: Boolean? = null
-)
+) {
+    fun toHpCharacterDetailsEntity(id: String): HpCharacterDetailsEntity {
+        return HpCharacterDetailsEntity(
+            id, picture, name, actorName, houseName, alternateNames, gender, dateOfBirth, wizard, eyeColour, hairColour, hogwartsStudent, hogwartsStaff, wand, alive
+        )
+    }
+}
