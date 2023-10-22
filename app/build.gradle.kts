@@ -51,4 +51,8 @@ dependencies {
 
     //Short Intent
     implementation("com.saadahmedev.shortintent:shortintent:3.0.0")
+
+    //sSP sDP
+    implementation("com.intuit.ssp:ssp-android:1.0.6")
+    implementation("com.intuit.sdp:sdp-android:1.0.6")
 }
