@@ -6,13 +6,16 @@ import com.saadahmedev.hpcapi.R
 import com.saadahmedev.hpcapi.base.BaseFragment
 import com.saadahmedev.hpcapi.databinding.FragmentHomeBinding
 import com.saadahmedev.hpcapi.helper.observe
+import com.saadahmedev.hpcapi.helper.setLinearLayoutManager
+import com.saadahmedev.hpcapi.ui.dashboard.tabs.home.adapter.CharacterAdapter
+import com.saadahmedev.hpcapi.ui.dashboard.tabs.home.adapter.OnAdapterItemClickListener
 import com.saadahmedev.hpcapi.ui.dashboard.tabs.home.viewmodel.HpCharacterListViewModel
 import com.saadahmedev.hpcapi.util.Constants.AppInfo.APP_NAME
 import com.saadahmedev.hpcapi.util.ResponseState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), OnAdapterItemClickListener {
 
     override val title: String
         get() = APP_NAME
@@ -20,8 +23,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         get() = false
 
     private val viewModel by viewModels<HpCharacterListViewModel>()
+    private val adapter by lazy {
+        CharacterAdapter(this)
+    }
 
     override fun onFragmentCreate(savedInstanceState: Bundle?) {
+        binding.recyclerView.setLinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+
         viewModel.getCharacters()
     }
 
@@ -33,7 +42,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
 
                 is ResponseState.Success -> {
-                    it.data!![0].name.longSnackBar()
+                    it.data?.let { characters ->
+                        adapter.addItems(characters)
+                    }
                 }
 
                 is ResponseState.Error -> {
@@ -41,5 +52,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
+    }
+
+    override fun onClicked(id: String?) {
+        //
     }
 }
