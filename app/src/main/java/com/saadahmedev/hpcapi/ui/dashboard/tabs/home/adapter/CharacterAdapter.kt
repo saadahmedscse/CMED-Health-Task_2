@@ -26,7 +26,7 @@ class CharacterAdapter(private val listener: OnAdapterItemClickListener) : BaseR
         binding.item = item
 
         binding.root.onClicked {
-            listener.onClicked(item.id)
+            listener.onClicked(item.id, item.name)
         }
     }
 }
