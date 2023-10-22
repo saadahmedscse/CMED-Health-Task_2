@@ -83,4 +83,10 @@ dependencies {
 
     //Rounded Image View
     implementation("com.makeramen:roundedimageview:2.3.0")
+
+    //Room Database
+    implementation("androidx.room:room-ktx:2.6.0")
+    kapt("androidx.room:room-compiler:2.6.0")
+    implementation("android.arch.persistence.room:runtime:1.1.1")
+    kapt("android.arch.persistence.room:compiler:1.1.1")
 }
