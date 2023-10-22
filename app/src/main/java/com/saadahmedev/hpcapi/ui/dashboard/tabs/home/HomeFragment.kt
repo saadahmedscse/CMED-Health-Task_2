@@ -5,7 +5,9 @@ import com.saadahmedev.hpcapi.R
 import com.saadahmedev.hpcapi.base.BaseFragment
 import com.saadahmedev.hpcapi.databinding.FragmentHomeBinding
 import com.saadahmedev.hpcapi.util.Constants.AppInfo.APP_NAME
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     override val title: String
