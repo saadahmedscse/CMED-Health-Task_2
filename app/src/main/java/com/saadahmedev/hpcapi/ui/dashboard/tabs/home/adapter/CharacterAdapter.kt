@@ -16,6 +16,7 @@ class CharacterAdapter(private val listener: OnAdapterItemClickListener) : BaseR
 
     override fun onBind(binding: ItemLayoutHpCharacterBinding, item: HpCharacter, position: Int) {
         if (!item.picture.isNullOrBlank()) Picasso.get().load(item.picture).into(binding.ivPicture)
+        else binding.ivPicture.setImageResource(R.drawable.app_logo)
 
         if (item.actorName.isNullOrBlank()) binding.layoutActor.gone()
         else binding.layoutActor.visible()
