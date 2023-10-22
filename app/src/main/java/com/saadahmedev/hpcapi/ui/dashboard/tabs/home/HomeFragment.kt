@@ -59,7 +59,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    override fun onClicked(id: String?) {
-        //
+    override fun onClicked(id: String?, name: String?) {
+        tinyDB.putString("character_id", id)
+            .putString("character_name", name)
+            .apply()
+
+        navigate(R.id.home_to_details)
     }
 }
