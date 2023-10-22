@@ -1,6 +1,7 @@
 package com.saadahmedev.hpcapi.ui.dashboard.tabs.characterDetails
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.saadahmedev.hpcapi.R
@@ -13,6 +14,9 @@ import com.saadahmedev.hpcapi.helper.visible
 import com.saadahmedev.hpcapi.ui.dashboard.tabs.characterDetails.viewmodel.HpCharacterDetailsViewModel
 import com.saadahmedev.hpcapi.util.ProgressDialog
 import com.saadahmedev.hpcapi.util.ResponseState
+import com.saadahmedsoft.popupdialog.PopupDialog
+import com.saadahmedsoft.popupdialog.Styles
+import com.saadahmedsoft.popupdialog.listener.OnDialogButtonClickListener
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,8 +51,21 @@ class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding>(F
                 }
 
                 is ResponseState.Error -> {
-                    it.message.longSnackBar()
                     progressDialog.dismiss()
+
+                    if (it.message == "No Internet Connection") {
+                        PopupDialog.getInstance(requireContext())
+                            .setStyle(Styles.FAILED)
+                            .setHeading("Uh-Oh!")
+                            .setDescription("No internet connection detected and no cached data found.")
+                            .showDialog(object : OnDialogButtonClickListener() {
+                                override fun onDismissClicked(dialog: Dialog?) {
+                                    super.onDismissClicked(dialog)
+                                }
+                            })
+                    } else {
+                        it.message.longSnackBar()
+                    }
                 }
             }
         }
