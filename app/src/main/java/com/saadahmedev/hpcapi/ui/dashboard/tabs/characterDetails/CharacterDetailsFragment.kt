@@ -137,7 +137,9 @@ class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding>(F
             item.alternateNames.map {
                 stringBuilder.append("$it • ")
             }
-            binding.tvAlternativeNames.text = stringBuilder.substring(0, stringBuilder.length - 3)
+            val alterNames = stringBuilder.substring(0, stringBuilder.length - 3)
+            if (alterNames.length > 3) binding.tvAlternativeNames.text = alterNames
+            else binding.layoutAlternativeNames.gone()
         }
 
         if (item.alive == null) {
