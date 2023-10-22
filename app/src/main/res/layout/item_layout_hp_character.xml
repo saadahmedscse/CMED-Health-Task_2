@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="item"
             type="com.saadahmedev.hpcapi.domain.model.HpCharacter" />
@@ -19,8 +20,9 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_picture"
-            android:layout_width="@dimen/_75sdp"
+            android:layout_width="@dimen/_55sdp"
             android:layout_height="@dimen/_75sdp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,51 +31,51 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/iv_picture"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="@dimen/_10sdp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_picture"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/hp_font"
-                android:textColor="@color/static_main"
-                android:textSize="@dimen/_20ssp"
                 android:text="@{item.name}"
+                android:textColor="@color/static_main"
+                android:textSize="@dimen/_23ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/layout_actor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_name"
-                android:layout_marginTop="@dimen/_3sdp">
+                app:layout_constraintTop_toBottomOf="@id/tv_name">
 
                 <TextView
                     android:layout_width="@dimen/_32sdp"
-                    android:layout_height="@dimen/_27sdp"
-                    android:gravity="center"
+                    android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg_main_5"
                     android:fontFamily="@font/hp_font"
-                    android:textSize="@dimen/_15ssp"
+                    android:gravity="center"
+                    android:text="@string/actor"
                     android:textColor="@color/static_white"
-                    android:text="@string/actor"/>
+                    android:textSize="@dimen/_15ssp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/medium"
-                    android:textSize="@dimen/_15ssp"
+                    android:text="@{item.actorName}"
                     android:textColor="@color/colorDarkGrey"
-                    android:text="@{item.actorName}"/>
+                    android:textSize="@dimen/_13ssp" />
 
             </LinearLayout>
 
@@ -81,30 +83,30 @@
                 android:id="@+id/layout_house"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_actor"
-                android:layout_marginTop="@dimen/_3sdp">
+                app:layout_constraintTop_toBottomOf="@id/layout_actor">
 
                 <TextView
                     android:layout_width="@dimen/_32sdp"
                     android:layout_height="@dimen/_25sdp"
-                    android:gravity="center"
                     android:background="@drawable/bg_main_5"
                     android:fontFamily="@font/hp_font"
-                    android:textSize="@dimen/_15ssp"
+                    android:gravity="center"
+                    android:text="@string/house"
                     android:textColor="@color/static_white"
-                    android:text="@string/house"/>
+                    android:textSize="@dimen/_15ssp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/regular"
-                    android:textSize="@dimen/_13ssp"
+                    android:text="@{item.houseName}"
                     android:textColor="@color/colorGrey"
-                    android:text="@{item.houseName}"/>
+                    android:textSize="@dimen/_13ssp" />
 
             </LinearLayout>
 
