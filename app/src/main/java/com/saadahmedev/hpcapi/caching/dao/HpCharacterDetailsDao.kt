@@ -1,6 +1,5 @@
 package com.saadahmedev.hpcapi.caching.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,7 +10,7 @@ import com.saadahmedev.hpcapi.caching.entity.HpCharacterDetailsEntity
 interface HpCharacterDetailsDao {
 
     @Query("SELECT * FROM HpCharacterDetails WHERE id=:id")
-    fun getCharacterDetails(id: String): LiveData<HpCharacterDetailsEntity>
+    fun getCharacterDetails(id: String): HpCharacterDetailsEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCharacterDetails(characterDetails: HpCharacterDetailsEntity)
