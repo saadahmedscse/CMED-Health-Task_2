@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dashboard_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_graph"
+    app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.saadahmedev.hpcapi.ui.dashboard.tabs.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/home_to_details"
+            app:destination="@id/characterDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.saadahmedev.hpcapi.ui.dashboard.tabs.characterDetails.CharacterDetailsFragment"
+        android:label="fragment_character_details"
+        tools:layout="@layout/fragment_character_details" />
 </navigation>
