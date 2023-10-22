@@ -1,6 +1,8 @@
 package com.saadahmedev.hpcapi.di
 
+import com.saadahmedev.hpcapi.data.repository.HpRepositoryImpl
 import com.saadahmedev.hpcapi.data.source.HpApi
+import com.saadahmedev.hpcapi.domain.repository.HpRepository
 import com.saadahmedev.hpcapi.util.Constants.Api.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -22,5 +24,11 @@ object HpModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(HpApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHpRepository(hpApi: HpApi): HpRepository {
+        return HpRepositoryImpl(hpApi)
     }
 }
