@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding>(FragmentCharacterDetailsBinding::inflate) {
 
     override val title: String
-        get() = "Character Details"
+        get() = tinyDB.getString("character_name", "Character Details")
     override val isBackButtonVisible: Boolean
         get() = true
 
