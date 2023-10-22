@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.saadahmedev.hpcapi.R
 import com.saadahmedev.hpcapi.ui.dashboard.DashboardActivity
-import com.saadahmedev.hpcapi.ui.helper.delay
+import com.saadahmedev.hpcapi.helper.delay
 import com.saadahmedsoft.shortintent.Anim
 import com.saadahmedsoft.shortintent.ShortIntent
 
